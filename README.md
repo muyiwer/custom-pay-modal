@@ -1,4 +1,4 @@
-# echezonaPayPop NPM Library
+# EchezonaPayPop NPM Library
 [![npm version](https://img.shields.io/npm/v/echezonapay-pop")](https://www.npmjs.com/package/echezonapay-pop")
 [![npm license](https://img.shields.io/npm/l/echezonapay-pop")](https://github.com/muyiwer/echezonaPayPlugin/tree/main/XprssPayPop/LICENSE)
 
