@@ -1,7 +1,7 @@
 {
-  "name": "xpresspay-pop",
+  "name": "echezonapay-pop",
   "version": "1.0.3",
-  "description": "Xpress merchant payment page popup",
+  "description": "Echezona merchant payment page popup",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
@@ -9,20 +9,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/muyiwer/XpressPayPlugin/tree/main/XpressPayPop"
+    "url": "https://github.com/muyiwer/custom-pay-modal/"
   },
-  "homepage": "https://github.com/muyiwer/XpressPayPlugin/tree/main/XpressPayPop/README.md",
+  "homepage": "https://github.com/muyiwer/custom-pay-modal",
   "bugs": {
-    "url": "https://github.com/muyiwer/XpressPayPlugin/tree/main/XpressPayPop/issues"
+    "url": "https://github.com/muyiwer/custom-pay-modal/issues"
   },
-  "typesPublisher": "@types/xpresspay-pop",
+  "typesPublisher": "@types/echezonapay-pop",
   "keywords": [
-    "xpresspay",
-    "xpresspay-pop",
+    "echezonapay",
+    "echezonapay-pop",
     "payment",
     "gateway"
   ],
-  "author": "Xpress Payment Solutions",
+  "author": "Echezona Gateway Limited",
   "license": "ISC",
   "publishConfig": {
     "access": "public"
