@@ -4,6 +4,7 @@ var modalHTML = `
      <div class="echezona-modal-content" id="echezona-modal-body">
          <span class="echezona-close" id="echezona-close-pop">&times;</span>
          <iframe id="echezona-iframe" src="" frameborder="0"></iframe>
+         <span class="echezona-footer" >🔒 Secured by Echezona</span>
      </div>
  </div>
 `;
@@ -74,6 +75,13 @@ var styles = `
       .echezona-close::after {
         transform: rotate(-45deg);
       }
+      .echezona-footer{
+        position: absolute;
+        bottom: -30px;
+        text-align: center;
+        width: 100%;
+        font-weight: 500
+      }
       @media only screen and (max-width: 450px) {
         #echezona-iframe {
             width: 100vw !important;
@@ -103,7 +111,7 @@ var styles = `
       }
       #echezona-iframe {
         width: 400px;
-        min-height: 425px;
+        height: 455px;
         overflow: none;
         border: none;
       }

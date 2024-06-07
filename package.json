@@ -1,6 +1,6 @@
 {
   "name": "echezonapay-pop",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Echezona merchant payment page popup",
   "main": "index.js",
   "types": "index.d.ts",

@@ -13,11 +13,11 @@
 
 
 
-    <script src="./xpresspop.js"></script>
+    <script src="./custompop.js"></script>
     <script>
         var btn = document.getElementById("pay");
         btn.onclick = function () {
-            const xpressPay = new XpressPayPop();
+            const xpressPay = new EchezonaPayPop();
             xpressPay.newTransaction({
                 onSuccess: (transaction) => {
                     console.log("success", transaction)
@@ -28,17 +28,17 @@
                 onCancel: () => {
                     console.log("closed")
                 },
-                // authorizeUrl: "http://localhost:3000/EAIlAHDEQCccFb?iframe=1",
-                request: {
-                    amount: "100.00",
-                    transactionId: Math.floor(Math.random() * 99999999) + "",
-                    email: "m@m.com",
-                    mode: "Dev",
-                    publicKey: "XPPUBK-3ab3c8c40268482dade5605c5235921a-X",
-                    currency: "NGN",
-                    productId: "1001",
-                    productDescription: "test",
-                }
+                authorizeUrl: "http://localhost:5174/2a118InAs0Jd4j?iframe=1",
+                // request: {
+                //     amount: "100.00",
+                //     transactionId: Math.floor(Math.random() * 99999999) + "",
+                //     email: "m@m.com",
+                //     mode: "Dev",
+                //     publicKey: "rKN/9BI/deTAcXYkvM5qVI0U/qOX8RXFEOd8MzQL2vQ6lgz3TFwdszlGqDuJRFBY7dq3Wh6MrnlUFZaAR4LPceoXlcsKvds8OL2VPfepTgQgBZbDwBfxhyk3oH7bQt7spTHUDN083l/6471l0jCWrz/RQfZZoZbjmkq0jVDHwAUwYDYNsb0smR6QbyYbUTi1Nu3X5PP0hYf28bRGMpjEQvvcbPg0n4lkxuSv8Xjtl44Q5Jl/Hjg6qPo+ji2fsSmTMhWe6hlAZgy6ESUzPwbN4mqMsYm7bxDZ2w/Ny/b8UHkgZNTfFMYsLO2n3D5N0GlvBJ+98Uf/FwYlLmF39IbcPQ==",
+                //     currency: "NGN",
+                //     productId: "1001",
+                //     productDescription: "test",
+                // }
             });
         }
 
