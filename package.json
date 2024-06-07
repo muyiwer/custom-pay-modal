@@ -1,0 +1,30 @@
+{
+  "name": "xpresspay-pop",
+  "version": "1.0.3",
+  "description": "Xpress merchant payment page popup",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/muyiwer/XpressPayPlugin/tree/main/XpressPayPop"
+  },
+  "homepage": "https://github.com/muyiwer/XpressPayPlugin/tree/main/XpressPayPop/README.md",
+  "bugs": {
+    "url": "https://github.com/muyiwer/XpressPayPlugin/tree/main/XpressPayPop/issues"
+  },
+  "typesPublisher": "@types/xpresspay-pop",
+  "keywords": [
+    "xpresspay",
+    "xpresspay-pop",
+    "payment",
+    "gateway"
+  ],
+  "author": "Xpress Payment Solutions",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  }
+}
