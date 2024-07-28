@@ -2,11 +2,11 @@ var modalHTML=`
  <div id="echezona-modal" class="echezona-modal">
      <div class="echezona-modal-content" id="echezona-modal-body">
          <span class="echezona-close" id="echezona-close-pop">&times;</span>
-         <iframe id="echezona-iframe" src="" frameborder="0"></iframe>
+         <iframe id="echezona-iframe" src="" frameborder="0" allowfullscreen></iframe>
          <span class="echezona-footer" >🔒 Secured by Echezona</span>
      </div>
  </div>
-`;document.body.insertAdjacentHTML("beforeend",modalHTML);var errorCodes={notFound:"1",invalidPublicKey:"2",unauthorized:"3"};const apiBaseUrlDev="https://echezona.somee.com/api/",webBaseUrlDev="https://checkout-echezona.vercel.app/",apiBaseUrlLive="https://echezona.somee.com/api/",webBaseUrlLive="https://checkout-echezona.vercel.app/";var styles=`
+`;document.body.insertAdjacentHTML("beforeend",modalHTML);var errorCodes={notFound:"1",invalidPublicKey:"2",unauthorized:"3"};const apiBaseUrlDev="https://api.staging.echezona.com/api/",webBaseUrlDev="https://checkout.staging.echezona.com/",apiBaseUrlLive="https://api.echezona.com/api/",webBaseUrlLive="https://checkout.echezona.com/";var styles=`
       /* Modal styles */
       .echezona-modal {
         display: none;
@@ -23,6 +23,7 @@ var modalHTML=`
         position: absolute;
         top: 50%;
         left: 50%;
+        height: auto !important;
         transform: translate(-50%, -50%);
         background-color: white;
         border-radius: 15px;
@@ -74,6 +75,7 @@ var modalHTML=`
         #echezona-iframe {
             width: 100vw !important;
             height: 100vh; !important;
+            overflow: hidden;
           }
           .echezona-modal-content {
             bottom: -220px !important; 
@@ -99,8 +101,8 @@ var modalHTML=`
       }
       #echezona-iframe {
         width: 400px;
-        height: 455px;
-        overflow: none;
+        overflow: hidden;
+        height: 450px;
         border: none;
       }
       .payment-loader-container {
@@ -154,4 +156,4 @@ var modalHTML=`
           transform: rotate(360deg);
         }
       }
-    `,styleElement=document.createElement("style");async function openModal({authorizeUrl:e,...a}){var t=document.getElementById("echezona-modal"),o=document.getElementById("echezona-modal-body"),n=document.getElementById("echezona-iframe");o.style.display="none";var r=document.createElement("div");r.classList.add("payment-loader-container");var s=document.createElement("div");s.classList.add("payment-loader");var i=document.createElement("div");i.classList.add("payment-circle");var c=document.createElement("div");c.classList.add("payment-inner-circle");var l=document.createElement("img");l.height=50,l.width=50,l.src="https://res.cloudinary.com/dgdwce3rq/image/upload/v1717244441/kyc/okomox3fwitvhix0qate.png",i.appendChild(c),i.appendChild(l),s.appendChild(i),r.appendChild(s),t.appendChild(r),t.style.display="block";let d=null;if(e)d=`${e}?iframe=1`;else{let p=await initializePayment({...a?.request}).catch(()=>{closeModal()});if(p?.success)d=`${p.data?.authorizeUrl}?iframe=1`;else{a.onError&&a.onError(p),closeModal();return}}n.src=d,n.style.display="none",n.onload=async function(){o.style.display="block",s.style.display="none",n.style.display="block",t.style.display="block"}}function closeModal(){document.getElementById("echezona-modal").style.display="none"}async function initializePayment({publicKey:e,mode:a,...t}){return new Promise(a=>{var o=new XMLHttpRequest;let n="https://checkout-echezona.vercel.app/";o.open("POST","https://echezona.somee.com/api/Payments/Initialize"),o.setRequestHeader("Content-type","application/json"),o.setRequestHeader("Authorization","bearer "+e),o.onload=function(){try{var e=JSON.parse(o.responseText);if(o.status>=200&&o.status<300)"00"===e.responseCode?a({success:!0,message:e.responseMessage,data:{authorizeUrl:e.data.paymentUrl,reference:e.data.accessCode}}):a({success:!1,message:e.responseMessage,data:{authorizeUrl:n+errorCodes.unauthorized,reference:""}});else if(400===o.status){var t=e.errors,r=Object.keys(t)[0];a({success:!1,message:t[r][0],data:{authorizeUrl:n+errorCodes.notFound+"/"+r,reference:""}})}else 401===o.status?a({success:!1,message:e.responseMessage,data:{authorizeUrl:n+errorCodes.invalidPublicKey,reference:""}}):500===o.status&&a({success:!1,message:"You are not authorized to use this plugin. Please check your public key.",data:{authorizeUrl:n+errorCodes.unauthorized,reference:""}})}catch(s){a({success:!1,message:o.responseText,data:{authorizeUrl:n+errorCodes.invalidPublicKey,reference:""}})}},o.onerror=function(){a({success:!1,message:"Service Unavailable. Please try again later",data:{authorizeUrl:n+errorCodes.unauthorized,reference:""}})},o.send(JSON.stringify({...t,callBackUrl:"https://echezona.vercel.app/"}))})}styleElement.innerHTML=styles,document.head.appendChild(styleElement);class EchezonaPayPop{constructor(){}newTransaction(e){let{onSuccess:a,onCancel:t,onError:o,authorizeUrl:n}=e;openModal({authorizeUrl:n,...e}),document.getElementById("echezona-close-pop").onclick=function(){t&&t(),closeModal()},window.addEventListener("message",function(e){if("checkout_Response"===e.data.type){let t=e.data?.data;a&&t?.success?a(t):o&&!t?.success&&o(t),closeModal()}})}}module.exports=EchezonaPayPop;
+    `,styleElement=document.createElement("style");async function openModal({authorizeUrl:e,...a}){var t=document.getElementById("echezona-modal"),o=document.getElementById("echezona-modal-body"),n=document.getElementById("echezona-iframe");o.style.display="none";var s=document.createElement("div");s.classList.add("payment-loader-container");var r=document.createElement("div");r.classList.add("payment-loader");var i=document.createElement("div");i.classList.add("payment-circle");var c=document.createElement("div");c.classList.add("payment-inner-circle");var l=document.createElement("img");l.height=50,l.width=50,l.src="https://res.cloudinary.com/dgdwce3rq/image/upload/v1717244441/kyc/okomox3fwitvhix0qate.png",i.appendChild(c),i.appendChild(l),r.appendChild(i),s.appendChild(r),t.appendChild(s),t.style.display="block";let d=null;if(e)d=`${e}?iframe=1`;else{let h=await initializePayment({...a?.request}).catch(()=>{closeModal()});if(h?.success)d=`${h.data?.authorizeUrl}?iframe=1`;else{a.onError&&a.onError(h),closeModal();return}}n.src=d,n.style.display="none",n.onload=async function(){o.style.display="block",r.style.display="none",n.style.display="block",t.style.display="block"},window.onload=function(){var e=document.body.scrollHeight;window.parent.postMessage(e,"http://127.0.0.1:5500")}}function closeModal(){document.getElementById("echezona-modal").style.display="none"}async function initializePayment({publicKey:e,mode:a,...t}){return new Promise(o=>{var n=new XMLHttpRequest;let s="Dev"===a?"https://checkout.staging.echezona.com/":"https://checkout.echezona.com/";n.open("POST",("Dev"===a?"https://api.staging.echezona.com/api/":"https://api.echezona.com/api/")+"Payments/Initialize"),n.setRequestHeader("Content-type","application/json"),n.setRequestHeader("Authorization","bearer "+e),n.onload=function(){try{var e=JSON.parse(n.responseText);if(n.status>=200&&n.status<300)"00"===e.responseCode?o({success:!0,message:e.responseMessage,data:{authorizeUrl:e.data.paymentUrl,reference:e.data.accessCode}}):o({success:!1,message:e.responseMessage,data:{authorizeUrl:s+errorCodes.unauthorized,reference:""}});else if(400===n.status){var a=e.errors,t=Object.keys(a)[0];o({success:!1,message:a[t][0],data:{authorizeUrl:s+errorCodes.notFound+"/"+t,reference:""}})}else 401===n.status?o({success:!1,message:e.responseMessage,data:{authorizeUrl:s+errorCodes.invalidPublicKey,reference:""}}):500===n.status&&o({success:!1,message:"You are not authorized to use this plugin. Please check your public key.",data:{authorizeUrl:s+errorCodes.unauthorized,reference:""}})}catch(r){o({success:!1,message:n.responseText,data:{authorizeUrl:s+errorCodes.invalidPublicKey,reference:""}})}},n.onerror=function(){o({success:!1,message:"Service Unavailable. Please try again later",data:{authorizeUrl:s+errorCodes.unauthorized,reference:""}})},n.send(JSON.stringify({...t,callBackUrl:"https://echezona.vercel.app/"}))})}styleElement.innerHTML=styles,document.head.appendChild(styleElement);class EchezonaPayPop{constructor(){}newTransaction(e){let{onSuccess:a,onCancel:t,onError:o,authorizeUrl:n}=e;openModal({authorizeUrl:n,...e}),document.getElementById("echezona-close-pop").onclick=function(){t&&t(),closeModal()},window.addEventListener("message",function(e){"checkout_height"===e.data.type&&(document.getElementById("echezona-iframe").style.height=e.data?.height)}),window.addEventListener("message",function(e){if("checkout_Response"===e.data.type){let t=e.data?.data;a&&t?.success?a(t):o&&!t?.success&&o(t),closeModal()}})}}module.exports=EchezonaPayPop;
